@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class GameClass extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Snake snake;
+	private Apple apple;
 
 	public TextureAtlas getAtlas() {
 		return atlas;
@@ -23,6 +24,7 @@ public class GameClass extends ApplicationAdapter {
 		this.batch = new SpriteBatch();
 		this.atlas = new TextureAtlas("main.pack");
 		this.snake = new Snake(atlas);
+		this.apple = new Apple(atlas);
 	}
 
 	@Override
@@ -32,11 +34,17 @@ public class GameClass extends ApplicationAdapter {
 		ScreenUtils.clear(0, 1, 0, 1);
 		batch.begin();
 		snake.render(batch);
+		apple.render(batch);
 		batch.end();
 	}
 
 	public void update(float dt){
 		snake.update(dt);
+		if (snake.getPosition().dst(apple.getPosition()) < 40){
+			apple.setActive(false);
+			snake.addScore(10);
+		}
+
 	}
 	
 	@Override

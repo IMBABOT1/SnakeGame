@@ -11,11 +11,22 @@ import com.badlogic.gdx.math.Vector2;
 public class Snake {
 
     private TextureRegion texture;
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
     private Vector2 position;
-
     private float velocity;
-
     private int offset;
+
+    private int left;
+    private int bottom;
+    private int right;
+    private int top;
+
+    private int score;
+
 
 
     public Snake(TextureAtlas atlas){
@@ -23,16 +34,24 @@ public class Snake {
         this.texture = atlas.findRegion("Snake");
         this.velocity = 10;
         this.offset = 45;
+        this.left = 0;
+        this.bottom = 0;
+        this.right = 600;
+        this.top = 600;
+        this.score = 0;
     }
 
     public void render(SpriteBatch batch){
         batch.draw(texture, position.x - offset, position.y - offset, 10, 10, 40, 40, 2, 2, 1);
     }
 
+    public void addScore(int amount){
+        score += amount;
+    }
+
     public void update(float dt){
-        System.out.println(position.x);
         checkCollisions();
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
+        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
             position.x -= velocity;
         }else if (Gdx.input.isKeyPressed(Input.Keys.D)){
             position.x += velocity;
@@ -42,18 +61,20 @@ public class Snake {
             position.y += velocity;
         }
     }
+
+
     private void checkCollisions(){
-        if (position.x > 600){
-            position.x = 600;
+        if (position.x > right){
+            position.x = right;
         }
-        if (position.x < 0 + offset){
-            position.x = 0 + offset;
+        if (position.x < left + offset){
+            position.x = left + offset;
         }
-        if (position.y > 600){
-            position.y = 600;
+        if (position.y > top){
+            position.y = top;
         }
-        if (position.y < 0 + offset){
-            position.y = 0 + offset;
+        if (position.y < bottom + offset){
+            position.y = bottom + offset;
         }
     }
 }
