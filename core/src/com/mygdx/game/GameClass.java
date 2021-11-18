@@ -36,7 +36,7 @@ public class GameClass extends ApplicationAdapter {
 	}
 
 	public void update(float dt){
-
+		snake.update(dt);
 	}
 	
 	@Override
