@@ -24,7 +24,7 @@ public class Apple {
 
     public Apple(TextureAtlas atlas){
         this.texture = atlas.findRegion("Apple");
-        this.position = new Vector2(MathUtils.random(0, 600), MathUtils.random(0, 600));
+        this.position = new Vector2(MathUtils.random(0, 550), MathUtils.random(0, 500));
         this.isActive = true;
     }
 

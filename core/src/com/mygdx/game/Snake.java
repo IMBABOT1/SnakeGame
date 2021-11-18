@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,6 +27,7 @@ public class Snake {
     private int top;
 
     private int score;
+    private StringBuilder builder;
 
 
 
@@ -33,20 +35,27 @@ public class Snake {
         this.position = new Vector2(100, 100);
         this.texture = atlas.findRegion("Snake");
         this.velocity = 10;
-        this.offset = 45;
+        this.offset = 20;
         this.left = 0;
         this.bottom = 0;
         this.right = 600;
         this.top = 600;
         this.score = 0;
+        this.builder = new StringBuilder();
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x - offset, position.y - offset, 10, 10, 40, 40, 2, 2, 1);
+        batch.draw(texture, position.x - offset, position.y - offset, offset, offset, 40, 40, 2, 2, 0);
     }
 
     public void addScore(int amount){
         score += amount;
+    }
+
+    public void renderGUI(SpriteBatch batch, BitmapFont font) {
+        builder.setLength(0);
+        builder.append("Score: ").append(score).append("\n");
+        font.draw(batch, builder, 10, 580);
     }
 
     public void update(float dt){

@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -11,6 +12,7 @@ public class GameClass extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Snake snake;
 	private Apple apple;
+	private BitmapFont font32;
 
 	public TextureAtlas getAtlas() {
 		return atlas;
@@ -25,6 +27,7 @@ public class GameClass extends ApplicationAdapter {
 		this.atlas = new TextureAtlas("main.pack");
 		this.snake = new Snake(atlas);
 		this.apple = new Apple(atlas);
+		this.font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
 	}
 
 	@Override
@@ -35,6 +38,7 @@ public class GameClass extends ApplicationAdapter {
 		batch.begin();
 		snake.render(batch);
 		apple.render(batch);
+		snake.renderGUI(batch, font32);
 		batch.end();
 	}
 
