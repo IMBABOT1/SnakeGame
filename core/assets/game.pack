@@ -1,0 +1,19 @@
+
+Images1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Snake
+  rotate: false
+  xy: 2, 2
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Apple
+  rotate: false
+  xy: 68, 2
+  size: 41, 37
+  orig: 41, 37
+  offset: 0, 0
+  index: -1
