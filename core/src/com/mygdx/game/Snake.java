@@ -2,7 +2,6 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -36,6 +35,12 @@ public class Snake {
 
     private float bound;
 
+    public void setSize(int size) {
+        this.size += size;
+    }
+
+    private int size;
+
 
 
     public Snake(TextureAtlas atlas){
@@ -54,6 +59,7 @@ public class Snake {
         this.top = 600;
         this.score = 0;
         this.builder = new StringBuilder();
+        this.size = 0;
 
     }
 
@@ -74,6 +80,7 @@ public class Snake {
     public void update(float dt){
         checkBounds();
         movement(dt);
+        System.out.println(size);
 
     }
     

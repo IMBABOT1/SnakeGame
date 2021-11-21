@@ -34,7 +34,7 @@ public class GameClass extends ApplicationAdapter {
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
 		update(dt);
-		ScreenUtils.clear(0, 1, 0, 1);
+		ScreenUtils.clear(0, 0, 0, 1);
 		batch.begin();
 		snake.render(batch);
 		apple.render(batch);
@@ -47,6 +47,7 @@ public class GameClass extends ApplicationAdapter {
 		if (snake.getPosition().dst(apple.getPosition()) < 40){
 			apple.setActive(false);
 			snake.addScore(10);
+			snake.setSize(1);
 		}
 
 	}
