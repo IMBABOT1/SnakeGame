@@ -1,7 +1,7 @@
 
 Images1.png
 format: RGBA8888
-filter: Linear,Linear
+filter: Linear,Nearest
 repeat: none
 Snake
   rotate: false
@@ -10,10 +10,17 @@ Snake
   orig: 64, 64
   offset: 0, 0
   index: -1
-Apple
+BackGround
   rotate: false
   xy: 68, 2
-  size: 41, 37
-  orig: 41, 37
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+Apple
+  rotate: false
+  xy: 2, 68
+  size: 60, 58
+  orig: 60, 58
   offset: 0, 0
   index: -1

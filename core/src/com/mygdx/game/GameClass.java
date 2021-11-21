@@ -13,6 +13,7 @@ public class GameClass extends ApplicationAdapter {
 	private Snake snake;
 	private Apple apple;
 	private BitmapFont font32;
+	private GameMap gameMap;
 
 	public TextureAtlas getAtlas() {
 		return atlas;
@@ -23,19 +24,21 @@ public class GameClass extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		this.batch = new SpriteBatch();
-		this.atlas = new TextureAtlas("game.pack");
-		this.snake = new Snake(atlas);
-		this.apple = new Apple(atlas);
-		this.font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
+		batch = new SpriteBatch();
+		atlas = new TextureAtlas("game.pack");
+		snake = new Snake(atlas);
+		apple = new Apple(atlas);
+		font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
+		gameMap = new GameMap(atlas);
 	}
 
 	@Override
 	public void render () {
 		float dt = Gdx.graphics.getDeltaTime();
 		update(dt);
-		ScreenUtils.clear(0, 0, 0, 1);
+		ScreenUtils.clear(1, 1, 1, 1);
 		batch.begin();
+		gameMap.render(batch);
 		snake.render(batch);
 		apple.render(batch);
 		snake.renderGUI(batch, font32);
@@ -44,6 +47,7 @@ public class GameClass extends ApplicationAdapter {
 
 	public void update(float dt){
 		snake.update(dt);
+		gameMap.update(dt);
 		if (snake.getPosition().dst(apple.getPosition()) < 40){
 			apple.setActive(false);
 			snake.addScore(10);
@@ -51,7 +55,7 @@ public class GameClass extends ApplicationAdapter {
 		}
 
 	}
-	
+
 	@Override
 	public void dispose () {
 		batch.dispose();

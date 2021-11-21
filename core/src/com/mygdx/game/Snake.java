@@ -52,11 +52,11 @@ public class Snake {
         this.velocityUp = 0;
         this.velocityDown = 0;
         this.bound = 6;
-        this.offset = 29;
+        this.offset = 32;
         this.left = 0;
         this.bottom = 0;
-        this.right = 600;
-        this.top = 600;
+        this.right = 640;
+        this.top = 640;
         this.score = 0;
         this.builder = new StringBuilder();
         this.size = 0;
@@ -74,7 +74,7 @@ public class Snake {
     public void renderGUI(SpriteBatch batch, BitmapFont font) {
         builder.setLength(0);
         builder.append("Score: ").append(score).append("\n");
-        font.draw(batch, builder, 10, 580);
+        font.draw(batch, builder, 10, 620);
     }
 
     public void update(float dt){
@@ -83,7 +83,7 @@ public class Snake {
         System.out.println(size);
 
     }
-    
+
     private void movement(float dt){
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             velocityRight = speed;

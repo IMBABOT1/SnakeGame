@@ -7,8 +7,8 @@ import com.mygdx.game.GameClass;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 600;
-		config.height = 600;
+		config.width = 640;
+		config.height = 640;
 		config.foregroundFPS = 60;
 		new LwjglApplication(new GameClass(), config);
 	}
