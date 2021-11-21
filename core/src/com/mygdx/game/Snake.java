@@ -24,22 +24,22 @@ public class Snake {
     private float velocityDown;
     private int offset;
 
-    private int left;
-    private int bottom;
-    private int right;
-    private int top;
+    private float left;
+    private float bottom;
+    private float right;
+    private float top;
 
     private int score;
     private StringBuilder builder;
 
-    private int speed;
+    private float speed;
 
 
 
     public Snake(TextureAtlas atlas){
         this.position = new Vector2(100, 100);
         this.texture = atlas.findRegion("Snake");
-        this.speed = 5;
+        this.speed = 50;
         this.velocityRight = 0;
         this.velocityLeft = 0;
         this.velocityUp = 0;
@@ -70,12 +70,11 @@ public class Snake {
 
     public void update(float dt){
         checkBounds();
-        movement();
+        movement(dt);
 
     }
-
-
-    private void movement(){
+    
+    private void movement(float dt){
         if (Gdx.input.isKeyPressed(Input.Keys.D)){
             velocityRight = speed;
             velocityLeft = 0;
@@ -100,10 +99,11 @@ public class Snake {
             velocityRight = 0;
             velocityLeft = 0;
         }
-        position.x += velocityRight;
-        position.x -= velocityLeft;
-        position.y += velocityUp;
-        position.y -= velocityDown;
+
+        position.x += velocityRight * dt;
+        position.x -= velocityLeft * dt;
+        position.y += velocityUp * dt;
+        position.y -= velocityDown * dt;
     }
 
 
