@@ -24,7 +24,7 @@ public class GameClass extends ApplicationAdapter {
 	@Override
 	public void create () {
 		this.batch = new SpriteBatch();
-		this.atlas = new TextureAtlas("main.pack");
+		this.atlas = new TextureAtlas("game.pack");
 		this.snake = new Snake(atlas);
 		this.apple = new Apple(atlas);
 		this.font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));

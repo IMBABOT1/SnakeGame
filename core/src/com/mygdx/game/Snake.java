@@ -34,17 +34,20 @@ public class Snake {
 
     private float speed;
 
+    private float bound;
+
 
 
     public Snake(TextureAtlas atlas){
         this.position = new Vector2(100, 100);
         this.texture = atlas.findRegion("Snake");
-        this.speed = 50;
+        this.speed = 300;
         this.velocityRight = 0;
         this.velocityLeft = 0;
         this.velocityUp = 0;
         this.velocityDown = 0;
-        this.offset = 20;
+        this.bound = 6;
+        this.offset = 29;
         this.left = 0;
         this.bottom = 0;
         this.right = 600;
@@ -55,7 +58,7 @@ public class Snake {
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x - offset, position.y - offset, offset, offset, 40, 40, 2, 2, 0);
+        batch.draw(texture, position.x - offset, position.y - offset);
     }
 
     public void addScore(int amount){
@@ -109,17 +112,17 @@ public class Snake {
 
 
     private void checkBounds(){
-        if (position.x > right){
-            position.x = right;
+        if (position.x > right - offset){
+            position.x = right - offset;
         }
-        if (position.x < left + offset){
-            position.x = left + offset;
+        if (position.x < left + offset - bound){
+            position.x = left + offset - bound;
         }
-        if (position.y > top - offset){
-            position.y = top - offset;
+        if (position.y > top - offset - bound){
+            position.y = top - offset - bound;
         }
-        if (position.y < bottom + offset){
-            position.y = bottom + offset;
+        if (position.y < bottom + offset - bound){
+            position.y = bottom + offset - bound;
         }
     }
 }
