@@ -10,12 +10,9 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
+
+
     private TextureRegion texture;
-
-    public Vector2 getPosition() {
-        return position;
-    }
-
     private Vector2 position;
     private float velocityRight;
     private float velocityLeft;
@@ -40,7 +37,9 @@ public class Snake {
     }
 
     private int size;
-
+    public Vector2 getPosition() {
+        return position;
+    }
 
 
     public Snake(TextureAtlas atlas){
@@ -66,6 +65,7 @@ public class Snake {
     public void render(SpriteBatch batch){
         batch.draw(texture, position.x - offset, position.y - offset);
     }
+
 
     public void addScore(int amount){
         score += amount;

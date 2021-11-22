@@ -24,15 +24,15 @@ public class Apple {
 
     public Apple(TextureAtlas atlas){
         this.texture = atlas.findRegion("Apple");
-        this.position = new Vector2(MathUtils.random(0, 580), MathUtils.random(0, 580));
+        this.position = new Vector2(MathUtils.random(0, 550), MathUtils.random(0, 550));
         this.isActive = true;
     }
 
     public void render(SpriteBatch batch){
         if (isActive) {
-            batch.draw(texture, position.x, position.y);
+            batch.draw(texture, position.x - 30, position.y - 30);
         }else {
-            position.set(MathUtils.random(0, 580), MathUtils.random(0, 580));
+            position.set(MathUtils.random(0, 600), MathUtils.random(0, 600));
             isActive = true;
         }
     }

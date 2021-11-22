@@ -47,7 +47,6 @@ public class GameClass extends ApplicationAdapter {
 
 	public void update(float dt){
 		snake.update(dt);
-		gameMap.update(dt);
 		if (snake.getPosition().dst(apple.getPosition()) < 40){
 			apple.setActive(false);
 			snake.addScore(10);
