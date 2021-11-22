@@ -10,10 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
-
+    private int cellX;
+    private int cellY;
 
     private TextureRegion texture;
-    private Vector2 position;
     private float velocityRight;
     private float velocityLeft;
     private float velocityUp;
@@ -27,8 +27,8 @@ public class Snake {
 
     private int score;
     private StringBuilder builder;
+    private GameClass game;
 
-    private float speed;
 
     private float bound;
 
@@ -37,15 +37,13 @@ public class Snake {
     }
 
     private int size;
-    public Vector2 getPosition() {
-        return position;
-    }
 
 
-    public Snake(TextureAtlas atlas){
-        this.position = new Vector2(100, 100);
+    public Snake(TextureAtlas atlas, GameClass game){
+        this.game = game;
+        this.cellX = 0;
+        this.cellY = 0;
         this.texture = atlas.findRegion("Snake");
-        this.speed = 300;
         this.velocityRight = 0;
         this.velocityLeft = 0;
         this.velocityUp = 0;
@@ -63,7 +61,7 @@ public class Snake {
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(texture, position.x - offset, position.y - offset);
+        batch.draw(texture, cellX * game.getGameMap().getCellSize(), cellY * game.getGameMap().getCellSize());
     }
 
 
@@ -80,56 +78,42 @@ public class Snake {
     public void update(float dt){
         checkBounds();
         movement(dt);
-        System.out.println(size);
-
     }
 
     private void movement(float dt){
-        if (Gdx.input.isKeyPressed(Input.Keys.D)){
-            velocityRight = speed;
-            velocityLeft = 0;
-            velocityUp = 0;
-            velocityDown = 0;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D) && cellX < game.getGameMap().getCellsX()){
+           cellX++;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)){
-            velocityRight = 0;
-            velocityLeft = speed;
-            velocityUp = 0;
-            velocityDown = 0;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A) && cellX > 0){
+            cellX--;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.W)){
-            velocityDown = 0;
-            velocityUp = speed;
-            velocityLeft = 0;
-            velocityRight = 0;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W) && cellY < game.getGameMap().getCellsY()){
+            cellY++;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            velocityDown = speed;
-            velocityUp = 0;
-            velocityRight = 0;
-            velocityLeft = 0;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S) && cellY > 0){
+            cellY--;
         }
 
-        position.x += velocityRight * dt;
-        position.x -= velocityLeft * dt;
-        position.y += velocityUp * dt;
-        position.y -= velocityDown * dt;
+          cellX += velocityRight;
+//        cellX += velocityLeft;
+//        cellY += velocityUp;
+//        cellY += velocityDown;
     }
 
 
 
     private void checkBounds(){
-        if (position.x > right - offset){
-            position.x = right - offset;
-        }
-        if (position.x < left + offset - bound){
-            position.x = left + offset - bound;
-        }
-        if (position.y > top - offset - bound){
-            position.y = top - offset - bound;
-        }
-        if (position.y < bottom + offset - bound){
-            position.y = bottom + offset - bound;
-        }
+//        if (position.x > right - offset){
+//            position.x = right - offset;
+//        }
+//        if (position.x < left + offset - bound){
+//            position.x = left + offset - bound;
+//        }
+//        if (position.y > top - offset - bound){
+//            position.y = top - offset - bound;
+//        }
+//        if (position.y < bottom + offset - bound){
+//            position.y = bottom + offset - bound;
+//        }
     }
 }

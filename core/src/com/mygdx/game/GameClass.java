@@ -14,20 +14,25 @@ public class GameClass extends ApplicationAdapter {
 	private Apple apple;
 	private BitmapFont font32;
 	private GameMap gameMap;
+	private TextureAtlas atlas;
+
 
 	public TextureAtlas getAtlas() {
 		return atlas;
 	}
 
-	private TextureAtlas atlas;
+
+	public GameMap getGameMap() {
+		return gameMap;
+	}
 
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		atlas = new TextureAtlas("game.pack");
-		snake = new Snake(atlas);
-		apple = new Apple(atlas);
+		snake = new Snake(atlas, this);
+		apple = new Apple(atlas, this);
 		font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
 		gameMap = new GameMap(atlas);
 	}
@@ -47,11 +52,11 @@ public class GameClass extends ApplicationAdapter {
 
 	public void update(float dt){
 		snake.update(dt);
-		if (snake.getPosition().dst(apple.getPosition()) < 40){
-			apple.setActive(false);
-			snake.addScore(10);
-			snake.setSize(1);
-		}
+//		if (snake.getPosition().dst(apple.getPosition()) < 40){
+//			apple.setActive(false);
+//			snake.addScore(10);
+//			snake.setSize(1);
+//		}
 
 	}
 

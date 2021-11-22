@@ -9,30 +9,33 @@ import com.badlogic.gdx.math.Vector2;
 public class Apple {
 
     private TextureRegion texture;
-    private Vector2 position;
+    private int cellX;
+    private int cellY;
 
     public void setActive(boolean active) {
         isActive = active;
     }
 
     private boolean isActive;
+    private GameClass game;
 
 
-    public Vector2 getPosition() {
-        return position;
-    }
 
-    public Apple(TextureAtlas atlas){
+    public Apple(TextureAtlas atlas, GameClass game){
+        this.game = game;
         this.texture = atlas.findRegion("Apple");
-        this.position = new Vector2(MathUtils.random(0, 550), MathUtils.random(0, 550));
+        this.cellX = MathUtils.random(0, 9);;
+        this.cellY = MathUtils.random(0, 9);;
         this.isActive = true;
     }
 
     public void render(SpriteBatch batch){
         if (isActive) {
-            batch.draw(texture, position.x - 30, position.y - 30);
+            batch.draw(texture, cellX * game.getGameMap().getCellSize(), cellY * game.getGameMap().getCellSize());
         }else {
-            position.set(MathUtils.random(0, 600), MathUtils.random(0, 600));
+            //position.set(MathUtils.random(0, 600), MathUtils.random(0, 600));
+            cellX = MathUtils.random(0, 9);
+            cellY = MathUtils.random(0, 9);
             isActive = true;
         }
     }
