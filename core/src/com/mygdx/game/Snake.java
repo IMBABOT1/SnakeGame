@@ -72,48 +72,25 @@ public class Snake {
     public void renderGUI(SpriteBatch batch, BitmapFont font) {
         builder.setLength(0);
         builder.append("Score: ").append(score).append("\n");
-        font.draw(batch, builder, 10, 620);
+        font.draw(batch, builder, 10, 700);
     }
 
     public void update(float dt){
-        checkBounds();
         movement(dt);
     }
 
     private void movement(float dt){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.D) && cellX < game.getGameMap().getCellsX()){
-           cellX++;
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D) &&  game.getGameMap().isCellPossible(cellX + 1, cellY)){
+            cellX++;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A) && cellX > 0){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A) &&  game.getGameMap().isCellPossible(cellX - 1, cellY)){
             cellX--;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W) && cellY < game.getGameMap().getCellsY()){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W) && game.getGameMap().isCellPossible(cellX, cellY + 1)){
             cellY++;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.S) && cellY > 0){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S) && game.getGameMap().isCellPossible(cellX, cellY - 1)){
             cellY--;
         }
-
-          cellX += velocityRight;
-//        cellX += velocityLeft;
-//        cellY += velocityUp;
-//        cellY += velocityDown;
-    }
-
-
-
-    private void checkBounds(){
-//        if (position.x > right - offset){
-//            position.x = right - offset;
-//        }
-//        if (position.x < left + offset - bound){
-//            position.x = left + offset - bound;
-//        }
-//        if (position.y > top - offset - bound){
-//            position.y = top - offset - bound;
-//        }
-//        if (position.y < bottom + offset - bound){
-//            position.y = bottom + offset - bound;
-//        }
     }
 }

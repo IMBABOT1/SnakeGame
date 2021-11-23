@@ -5,9 +5,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class GameMap {
-    private static final int CELLS_X = 9;
-    private static final int CELLS_Y = 9;
+    private static final int CELLS_X = 10;
+    private static final int CELLS_Y = 10;
     private static final int CELL_SIZE = 64;
+
+
     private byte[][] data;
     private TextureRegion groundTexture;
 
@@ -37,6 +39,15 @@ public class GameMap {
             }
         }
     }
+
+    public boolean isCellPossible(int cellX, int cellY){
+        if (cellX < 0 || cellX > getCellsX() || cellY > getCellsY() || cellY < 0){
+            return false;
+        }
+        return true;
+    }
+
+
 
     public void update(float dt){
         
