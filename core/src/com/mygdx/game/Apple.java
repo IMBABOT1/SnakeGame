@@ -9,37 +9,38 @@ import com.badlogic.gdx.math.Vector2;
 public class Apple {
 
     private TextureRegion texture;
-    private int cellX;
-    private int cellY;
+    private Vector2 position;
+    private boolean isActive;
+    private GameScreen gameScreen;
+
+
+    public Vector2 getPosition() {
+        return position;
+    }
 
     public void setActive(boolean active) {
         isActive = active;
     }
 
-    private boolean isActive;
-    private GameScreen gameScreen;
-
-
-
     public Apple(GameScreen gameScreen){
         this.gameScreen = gameScreen;
         this.texture = Assets.getInstance().getAtlas().findRegion("Apple");
-        this.cellX = MathUtils.random(0, gameScreen.getGameMap().getCells());
-        this.cellY = MathUtils.random(0, gameScreen.getGameMap().getCells());
         this.isActive = true;
+        this.position = new Vector2(0, 0);
+        this.position.x = MathUtils.random(0, gameScreen.getGameMap().getCells());
+        this.position.y = MathUtils.random(0, gameScreen.getGameMap().getCells());
     }
 
     public void render(SpriteBatch batch){
         if (isActive) {
-            batch.draw(texture, cellX * gameScreen.getGameMap().getCellSize(), cellY * gameScreen.getGameMap().getCellSize());
+            batch.draw(texture, position.x * gameScreen.getGameMap().getCellSize(), position.y * gameScreen.getGameMap().getCellSize());
         }else {
-            cellX = MathUtils.random(0, gameScreen.getGameMap().getCells());
-            cellY = MathUtils.random(0, gameScreen.getGameMap().getCells());
+            position.x = MathUtils.random(0, gameScreen.getGameMap().getCells());
+            position.y = MathUtils.random(0, gameScreen.getGameMap().getCells());
             isActive = true;
         }
     }
 
     public void update(float dt){
-
     }
 }

@@ -7,11 +7,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
-    private float cellX;
-    private float cellY;
 
     private TextureRegion texture;
 
@@ -26,11 +25,12 @@ public class Snake {
     private boolean isAPressed;
 
     private float speed;
+    private Vector2 position;
+
 
     public Snake(GameScreen gameScreen){
         this.gameScreen = gameScreen;
-        this.cellX = 0;
-        this.cellY = 0;
+        this.position = new Vector2(0, 0);
         this.texture = Assets.getInstance().getAtlas().findRegion("Snake");
         this.score = 0;
         this.builder = new StringBuilder();
@@ -39,11 +39,16 @@ public class Snake {
         this.isSPressed = false;
         this.isWPressed = false;
         this.speed = 0.1f;
-
     }
 
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+
     public void render(SpriteBatch batch){
-        batch.draw(texture, cellX * gameScreen.getGameMap().getCellSize(), cellY * gameScreen.getGameMap().getCellSize());
+        batch.draw(texture, position.x * gameScreen.getGameMap().getCellSize(), position.y * gameScreen.getGameMap().getCellSize());
     }
 
 
@@ -60,6 +65,14 @@ public class Snake {
     public void update(float dt){
         isPressed();
         movement(dt);
+        eatApple();
+    }
+
+    private void eatApple(){
+        if (position.dst(gameScreen.getApple().getPosition()) < 0.5f){
+            gameScreen.getApple().setActive(false);
+            addScore(10);
+        }
     }
 
     private void isPressed(){
@@ -90,17 +103,17 @@ public class Snake {
     }
 
     private void movement(float dt){
-        if (isDPressed && cellX < gameScreen.getGameMap().getCellsX()){
-            cellX += speed;
+        if (isDPressed && position.x < gameScreen.getGameMap().getCellsX()){
+            position.x += speed;
         }
-        if (isAPressed && cellX > 0){
-            cellX -= speed;
+        if (isAPressed && position.x > 0){
+            position.x -= speed;
         }
-        if (isWPressed && cellY < gameScreen.getGameMap().getCellsY()){
-            cellY += speed;
+        if (isWPressed && position.y < gameScreen.getGameMap().getCellsY()){
+            position.y += speed;
         }
-        if (isSPressed && cellY > 0){
-            cellY -= speed;
+        if (isSPressed && position.y > 0){
+            position.y -= speed;
         }
     }
 }

@@ -24,6 +24,11 @@ public class GameScreen extends AbstractScreen {
     }
 
 
+    public Apple getApple() {
+        return apple;
+    }
+
+
     @Override
     public void show() {
         this.gameMap = new GameMap();
@@ -47,10 +52,5 @@ public class GameScreen extends AbstractScreen {
 
     public void update(float dt) {
         snake.update(dt);
-//		if (snake.getPosition().dst(apple.getPosition()) < 40){
-//			apple.setActive(false);
-//			snake.addScore(10);
-//			snake.setSize(1);
-//		}
     }
 }
