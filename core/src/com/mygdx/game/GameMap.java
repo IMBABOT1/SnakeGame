@@ -27,9 +27,9 @@ public class GameMap {
     }
 
 
-    public GameMap(TextureAtlas atlas){
+    public GameMap(){
         this.data = new byte[CELLS_X][CELLS_Y];
-        this.groundTexture = atlas.findRegion("BackGround");
+        this.groundTexture = Assets.getInstance().getAtlas().findRegion("BackGround");
     }
 
 

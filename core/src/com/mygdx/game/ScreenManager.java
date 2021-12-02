@@ -16,7 +16,7 @@ public class ScreenManager {
 
     private GameClass game;
     private SpriteBatch batch;
-   // private LoadingScreen loadingScreen;
+    private LoadingScreen loadingScreen;
     private GameScreen gameScreen;
     private Screen targetScreen;
 //    private Viewport viewport;
@@ -45,6 +45,7 @@ public class ScreenManager {
 //        this.camera = new OrthographicCamera(WORLD_WIDTH, WORLD_HEIGHT);
 //        this.viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         this.gameScreen = new GameScreen(batch);
+        this.loadingScreen = new LoadingScreen(batch);
 //        this.loadingScreen = new LoadingScreen(batch);
     }
 
@@ -60,18 +61,18 @@ public class ScreenManager {
 //    }
 
     public void changeScreen(ScreenType type) {
-//        Screen screen = game.getScreen();
-//        Assets.getInstance().clear();
-//        if (screen != null) {
-//            screen.dispose();
-//        }
+        Screen screen = game.getScreen();
+        Assets.getInstance().clear();
+        if (screen != null) {
+            screen.dispose();
+        }
 ////        resetCamera();
-//        game.setScreen(loadingScreen);
+       game.setScreen(loadingScreen);
         switch (type) {
             case GAME:
-               game.setScreen(gameScreen);
-//                targetScreen = gameScreen;
-//                Assets.getInstance().loadAssets(ScreenType.GAME);
+//               game.setScreen(gameScreen);
+                targetScreen = gameScreen;
+                Assets.getInstance().loadAssets(ScreenType.GAME);
             break;
         }
     }

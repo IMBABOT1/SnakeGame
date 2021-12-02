@@ -21,9 +21,9 @@ public class Apple {
 
 
 
-    public Apple(TextureAtlas atlas, GameScreen gameScreen){
+    public Apple(GameScreen gameScreen){
         this.gameScreen = gameScreen;
-        this.texture = atlas.findRegion("Apple");
+        this.texture = Assets.getInstance().getAtlas().findRegion("Apple");
         this.cellX = MathUtils.random(0, 9);;
         this.cellY = MathUtils.random(0, 9);;
         this.isActive = true;

@@ -27,11 +27,11 @@ public class Snake {
 
     private float speed;
 
-    public Snake(TextureAtlas atlas, GameScreen gameScreen){
+    public Snake(GameScreen gameScreen){
         this.gameScreen = gameScreen;
         this.cellX = 0;
         this.cellY = 0;
-        this.texture = atlas.findRegion("Snake");
+        this.texture = Assets.getInstance().getAtlas().findRegion("Snake");
         this.score = 0;
         this.builder = new StringBuilder();
         this.isDPressed = false;

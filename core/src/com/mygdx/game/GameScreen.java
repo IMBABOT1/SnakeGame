@@ -7,18 +7,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class GameScreen implements Screen {
-
-    private SpriteBatch batch;
+public class GameScreen extends AbstractScreen {
     private Snake snake;
     private Apple apple;
     private BitmapFont font32;
     private GameMap gameMap;
-    private TextureAtlas atlas;
 
 
-    public GameScreen(SpriteBatch batch){
-        this.batch = batch;
+    public GameScreen(SpriteBatch batch) {
+        super(batch);
     }
 
 
@@ -29,11 +26,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void show() {
-        this.atlas = new TextureAtlas("game.pack");
-        this.snake = new Snake(atlas, this);
-        this.apple = new Apple(atlas, this);
-        this.font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
-        this.gameMap = new GameMap(atlas);
+        this.snake = new Snake( this);
+        this.apple = new Apple( this);
+        this.font32 = Assets.getInstance().getAssetManager().get("fonts/font32.ttf");
+        this.gameMap = new GameMap();
     }
 
     @Override
@@ -49,32 +45,12 @@ public class GameScreen implements Screen {
     }
 
 
-    public void update(float dt){
+    public void update(float dt) {
         snake.update(dt);
 //		if (snake.getPosition().dst(apple.getPosition()) < 40){
 //			apple.setActive(false);
 //			snake.addScore(10);
 //			snake.setSize(1);
 //		}
-    }
-
-    @Override
-    public void resize(int width, int height) {
-    }
-
-    @Override
-    public void pause() {
-    }
-
-    @Override
-    public void resume() {
-    }
-
-    @Override
-    public void hide() {
-    }
-
-    @Override
-    public void dispose() {
     }
 }
