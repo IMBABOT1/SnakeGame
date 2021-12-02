@@ -26,10 +26,10 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void show() {
+        this.gameMap = new GameMap();
         this.snake = new Snake( this);
         this.apple = new Apple( this);
         this.font32 = Assets.getInstance().getAssetManager().get("fonts/font32.ttf");
-        this.gameMap = new GameMap();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class GameScreen extends AbstractScreen {
         ScreenUtils.clear(1, 1, 1, 1);
         batch.begin();
         gameMap.render(batch);
-        snake.render(batch);
         apple.render(batch);
+        snake.render(batch);
         snake.renderGUI(batch, font32);
         batch.end();
     }

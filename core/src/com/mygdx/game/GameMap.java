@@ -8,7 +8,7 @@ public class GameMap {
     private static final int CELLS_X = 10;
     private static final int CELLS_Y = 10;
     private static final int CELL_SIZE = 64;
-
+    private static final int CELLS = 10;
 
 
     private byte[][] data;
@@ -25,6 +25,12 @@ public class GameMap {
     public int getCellSize() {
         return CELL_SIZE;
     }
+
+    public int getCells(){
+        return CELLS;
+    }
+
+
 
 
     public GameMap(){

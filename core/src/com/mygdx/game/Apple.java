@@ -24,8 +24,8 @@ public class Apple {
     public Apple(GameScreen gameScreen){
         this.gameScreen = gameScreen;
         this.texture = Assets.getInstance().getAtlas().findRegion("Apple");
-        this.cellX = MathUtils.random(0, 9);;
-        this.cellY = MathUtils.random(0, 9);;
+        this.cellX = MathUtils.random(0, gameScreen.getGameMap().getCells());
+        this.cellY = MathUtils.random(0, gameScreen.getGameMap().getCells());
         this.isActive = true;
     }
 
@@ -33,9 +33,8 @@ public class Apple {
         if (isActive) {
             batch.draw(texture, cellX * gameScreen.getGameMap().getCellSize(), cellY * gameScreen.getGameMap().getCellSize());
         }else {
-            //position.set(MathUtils.random(0, 600), MathUtils.random(0, 600));
-            cellX = MathUtils.random(0, 9);
-            cellY = MathUtils.random(0, 9);
+            cellX = MathUtils.random(0, gameScreen.getGameMap().getCells());
+            cellY = MathUtils.random(0, gameScreen.getGameMap().getCells());
             isActive = true;
         }
     }
