@@ -39,6 +39,11 @@ public class Snake {
     private int size;
 
 
+    private boolean isDPressed;
+    private boolean isSPressed;
+    private boolean isWPressed;
+    private boolean isAPressed;
+
     public Snake(TextureAtlas atlas, GameClass game){
         this.game = game;
         this.cellX = 0;
@@ -57,6 +62,10 @@ public class Snake {
         this.score = 0;
         this.builder = new StringBuilder();
         this.size = 0;
+        this.isDPressed = false;
+        this.isAPressed = false;
+        this.isSPressed = false;
+        this.isWPressed = false;
 
     }
 
@@ -76,11 +85,39 @@ public class Snake {
     }
 
     public void update(float dt){
+        isPressed();
         movement(dt);
     }
 
+    private void isPressed(){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D)){
+            isDPressed = true;
+            isAPressed = false;
+            isSPressed = false;
+            isWPressed = false;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)){
+            isDPressed = false;
+            isAPressed = false;
+            isSPressed = false;
+            isWPressed = true;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S)){
+            isDPressed = false;
+            isAPressed = false;
+            isSPressed = true;
+            isWPressed = false;
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)){
+            isDPressed = false;
+            isAPressed = true;
+            isSPressed = false;
+            isWPressed = false;
+        }
+    }
+
     private void movement(float dt){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.D) &&  game.getGameMap().isCellPossible(cellX + 1, cellY)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D) && is  game.getGameMap().isCellPossible(cellX + 1, cellY)){
             cellX++;
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.A) &&  game.getGameMap().isCellPossible(cellX - 1, cellY)){

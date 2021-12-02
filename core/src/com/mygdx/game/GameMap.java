@@ -9,6 +9,10 @@ public class GameMap {
     private static final int CELLS_Y = 10;
     private static final int CELL_SIZE = 64;
 
+    private final int TERRAIN_GRASS = 0;
+    private final int TERRAIN_OBSTACLE = 1;
+
+
 
     private byte[][] data;
     private TextureRegion groundTexture;
