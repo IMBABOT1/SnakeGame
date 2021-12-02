@@ -1,62 +1,35 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ScreenUtils;
+import sun.java2d.ScreenUpdateManager;
 
-public class GameClass extends ApplicationAdapter {
+public class GameClass extends Game {
 	private SpriteBatch batch;
-	private Snake snake;
-	private Apple apple;
-	private BitmapFont font32;
-	private GameMap gameMap;
-	private TextureAtlas atlas;
 
 
-	public TextureAtlas getAtlas() {
-		return atlas;
-	}
-
-
-	public GameMap getGameMap() {
-		return gameMap;
-	}
-
-
-	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		atlas = new TextureAtlas("game.pack");
-		snake = new Snake(atlas, this);
-		apple = new Apple(atlas, this);
-		font32 = new BitmapFont(Gdx.files.internal("font32.fnt"));
-		gameMap = new GameMap(atlas);
+		ScreenManager.getInstance().init(this, batch);
+		ScreenManager.getInstance().changeScreen(ScreenManager.ScreenType.GAME);
 	}
 
 	@Override
 	public void render () {
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		float dt = Gdx.graphics.getDeltaTime();
-		update(dt);
-		ScreenUtils.clear(1, 1, 1, 1);
-		batch.begin();
-		gameMap.render(batch);
-		snake.render(batch);
-		apple.render(batch);
-		snake.renderGUI(batch, font32);
-		batch.end();
+		getScreen().render(dt);
 	}
 
 	public void update(float dt){
-		snake.update(dt);
-//		if (snake.getPosition().dst(apple.getPosition()) < 40){
-//			apple.setActive(false);
-//			snake.addScore(10);
-//			snake.setSize(1);
-//		}
 
 	}
 

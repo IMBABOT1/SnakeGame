@@ -2,11 +2,11 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
@@ -17,7 +17,7 @@ public class Snake {
 
     private int score;
     private StringBuilder builder;
-    private GameClass game;
+    private GameScreen gameScreen;
 
 
     private boolean isDPressed;
@@ -27,8 +27,8 @@ public class Snake {
 
     private float speed;
 
-    public Snake(TextureAtlas atlas, GameClass game){
-        this.game = game;
+    public Snake(TextureAtlas atlas, GameScreen gameScreen){
+        this.gameScreen = gameScreen;
         this.cellX = 0;
         this.cellY = 0;
         this.texture = atlas.findRegion("Snake");
@@ -43,7 +43,7 @@ public class Snake {
     }
 
     public void render(SpriteBatch batch){
-        batch.draw(texture, cellX * game.getGameMap().getCellSize(), cellY * game.getGameMap().getCellSize());
+        batch.draw(texture, cellX * gameScreen.getGameMap().getCellSize(), cellY * gameScreen.getGameMap().getCellSize());
     }
 
 
@@ -90,13 +90,13 @@ public class Snake {
     }
 
     private void movement(float dt){
-        if (isDPressed && cellX < game.getGameMap().getCellsX()){
+        if (isDPressed && cellX < gameScreen.getGameMap().getCellsX()){
             cellX += speed;
         }
         if (isAPressed && cellX > 0){
             cellX -= speed;
         }
-        if (isWPressed && cellY < game.getGameMap().getCellsY()){
+        if (isWPressed && cellY < gameScreen.getGameMap().getCellsY()){
             cellY += speed;
         }
         if (isSPressed && cellY > 0){

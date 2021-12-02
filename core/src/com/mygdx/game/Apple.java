@@ -17,12 +17,12 @@ public class Apple {
     }
 
     private boolean isActive;
-    private GameClass game;
+    private GameScreen gameScreen;
 
 
 
-    public Apple(TextureAtlas atlas, GameClass game){
-        this.game = game;
+    public Apple(TextureAtlas atlas, GameScreen gameScreen){
+        this.gameScreen = gameScreen;
         this.texture = atlas.findRegion("Apple");
         this.cellX = MathUtils.random(0, 9);;
         this.cellY = MathUtils.random(0, 9);;
@@ -31,7 +31,7 @@ public class Apple {
 
     public void render(SpriteBatch batch){
         if (isActive) {
-            batch.draw(texture, cellX * game.getGameMap().getCellSize(), cellY * game.getGameMap().getCellSize());
+            batch.draw(texture, cellX * gameScreen.getGameMap().getCellSize(), cellY * gameScreen.getGameMap().getCellSize());
         }else {
             //position.set(MathUtils.random(0, 600), MathUtils.random(0, 600));
             cellX = MathUtils.random(0, 9);
