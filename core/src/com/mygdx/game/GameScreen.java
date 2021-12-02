@@ -38,8 +38,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        float dt = Gdx.graphics.getDeltaTime();
-        update(dt);
+        update(delta);
         ScreenUtils.clear(1, 1, 1, 1);
         batch.begin();
         gameMap.render(batch);

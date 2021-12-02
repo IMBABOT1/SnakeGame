@@ -19,7 +19,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "snake.game"
+        appName = "SnakeGame"
         gdxVersion = '1.10.0'
         roboVMVersion = '2.3.12'
         box2DLightsVersion = '1.5'
@@ -38,6 +38,17 @@ allprojects {
     }
 }
 
+project(":core") {
+    apply plugin: "java-library"
+
+
+    dependencies {
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        
+    }
+}
+
 project(":desktop") {
     apply plugin: "java-library"
 
@@ -46,18 +57,7 @@ project(":desktop") {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-        
-    }
-}
-
-project(":core") {
-    apply plugin: "java-library"
-
-
-    dependencies {
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         
     }
 }
