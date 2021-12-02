@@ -9,9 +9,6 @@ public class GameMap {
     private static final int CELLS_Y = 10;
     private static final int CELL_SIZE = 64;
 
-    private final int TERRAIN_GRASS = 0;
-    private final int TERRAIN_OBSTACLE = 1;
-
 
 
     private byte[][] data;
@@ -43,15 +40,6 @@ public class GameMap {
             }
         }
     }
-
-    public boolean isCellPossible(int cellX, int cellY){
-        if (cellX < 0 || cellX > getCellsX() || cellY > getCellsY() || cellY < 0){
-            return false;
-        }
-        return true;
-    }
-
-
 
     public void update(float dt){
         

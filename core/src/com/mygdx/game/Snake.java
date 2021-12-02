@@ -10,33 +10,14 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Snake {
 
-    private int cellX;
-    private int cellY;
+    private float cellX;
+    private float cellY;
 
     private TextureRegion texture;
-    private float velocityRight;
-    private float velocityLeft;
-    private float velocityUp;
-    private float velocityDown;
-    private int offset;
-
-    private float left;
-    private float bottom;
-    private float right;
-    private float top;
 
     private int score;
     private StringBuilder builder;
     private GameClass game;
-
-
-    private float bound;
-
-    public void setSize(int size) {
-        this.size += size;
-    }
-
-    private int size;
 
 
     private boolean isDPressed;
@@ -44,28 +25,20 @@ public class Snake {
     private boolean isWPressed;
     private boolean isAPressed;
 
+    private float speed;
+
     public Snake(TextureAtlas atlas, GameClass game){
         this.game = game;
         this.cellX = 0;
         this.cellY = 0;
         this.texture = atlas.findRegion("Snake");
-        this.velocityRight = 0;
-        this.velocityLeft = 0;
-        this.velocityUp = 0;
-        this.velocityDown = 0;
-        this.bound = 6;
-        this.offset = 32;
-        this.left = 0;
-        this.bottom = 0;
-        this.right = 640;
-        this.top = 640;
         this.score = 0;
         this.builder = new StringBuilder();
-        this.size = 0;
         this.isDPressed = false;
         this.isAPressed = false;
         this.isSPressed = false;
         this.isWPressed = false;
+        this.speed = 0.1f;
 
     }
 
@@ -117,17 +90,17 @@ public class Snake {
     }
 
     private void movement(float dt){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.D) && is  game.getGameMap().isCellPossible(cellX + 1, cellY)){
-            cellX++;
+        if (isDPressed && cellX < game.getGameMap().getCellsX()){
+            cellX += speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.A) &&  game.getGameMap().isCellPossible(cellX - 1, cellY)){
-            cellX--;
+        if (isAPressed && cellX > 0){
+            cellX -= speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.W) && game.getGameMap().isCellPossible(cellX, cellY + 1)){
-            cellY++;
+        if (isWPressed && cellY < game.getGameMap().getCellsY()){
+            cellY += speed;
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.S) && game.getGameMap().isCellPossible(cellX, cellY - 1)){
-            cellY--;
+        if (isSPressed && cellY > 0){
+            cellY -= speed;
         }
     }
 }
