@@ -1,11 +1,13 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.logic.Apple;
+import com.mygdx.game.screens.AbstractScreen;
+import com.mygdx.game.screens.utils.Assets;
+import com.mygdx.game.logic.GameMap;
+import com.mygdx.game.logic.Snake;
 
 public class GameScreen extends AbstractScreen {
     private Snake snake;

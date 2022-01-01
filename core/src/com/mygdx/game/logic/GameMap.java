@@ -1,8 +1,8 @@
-package com.mygdx.game;
+package com.mygdx.game.logic;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.mygdx.game.screens.utils.Assets;
 
 public class GameMap {
     private static final int CELLS_X = 10;

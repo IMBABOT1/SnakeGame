@@ -1,10 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.logic;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.GameScreen;
+import com.mygdx.game.screens.utils.Assets;
 
 public class Apple {
 

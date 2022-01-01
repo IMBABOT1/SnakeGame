@@ -1,8 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.logic.GameClass;
+import com.mygdx.game.GameScreen;
+import com.mygdx.game.screens.utils.Assets;
 
 public class ScreenManager {
     public enum ScreenType {
