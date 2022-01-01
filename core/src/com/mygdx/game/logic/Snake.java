@@ -2,12 +2,9 @@ package com.mygdx.game.logic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.GameScreen;
 import com.mygdx.game.screens.utils.Assets;
@@ -17,7 +14,7 @@ public class Snake {
 
     private TextureRegion texture;
 
-    private int size;
+
     private int score;
     private StringBuilder builder;
     private GameScreen gameScreen;
@@ -29,11 +26,12 @@ public class Snake {
     private boolean isAPressed;
 
     private float speed;
-
+    private Vector2 position;
 
 
     public Snake(GameScreen gameScreen){
         this.gameScreen = gameScreen;
+        this.position = new Vector2(0, 0);
         this.texture = Assets.getInstance().getAtlas().findRegion("Snake");
         this.score = 0;
         this.builder = new StringBuilder();
@@ -42,17 +40,17 @@ public class Snake {
         this.isSPressed = false;
         this.isWPressed = false;
         this.speed = 0.1f;
-        this.size = 64;
     }
 
 
-    public void drawHead(Batch batch, ShapeRenderer shapeRenderer){
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GREEN);
-        shapeRenderer.rect(0, 0, size, size);
-        shapeRenderer.end();
+    public Vector2 getPosition() {
+        return position;
     }
 
+
+    public void render(SpriteBatch batch){
+        batch.draw(texture, position.x * gameScreen.getGameMap().getCellSize(), position.y * gameScreen.getGameMap().getCellSize());
+    }
 
 
     public void addScore(int amount){
@@ -72,7 +70,10 @@ public class Snake {
     }
 
     private void eatApple(){
-
+        if (position.dst(gameScreen.getApple().getPosition()) < 0.5f){
+            gameScreen.getApple().setActive(false);
+            addScore(10);
+        }
     }
 
     private void isPressed(){
@@ -103,17 +104,17 @@ public class Snake {
     }
 
     private void movement(float dt){
-//        if (isDPressed && position.x < gameScreen.getGameMap().getCellsX()){
-//            position.x += speed;
-//        }
-//        if (isAPressed && position.x > 0){
-//            position.x -= speed;
-//        }
-//        if (isWPressed && position.y < gameScreen.getGameMap().getCellsY()){
-//            position.y += speed;
-//        }
-//        if (isSPressed && position.y > 0){
-//            position.y -= speed;
-//        }
+        if (isDPressed && position.x < gameScreen.getGameMap().getCellsX()){
+            position.x += speed;
+        }
+        if (isAPressed && position.x > 0){
+            position.x -= speed;
+        }
+        if (isWPressed && position.y < gameScreen.getGameMap().getCellsY()){
+            position.y += speed;
+        }
+        if (isSPressed && position.y > 0){
+            position.y -= speed;
+        }
     }
 }

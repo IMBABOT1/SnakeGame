@@ -10,8 +10,6 @@ import com.mygdx.game.screens.utils.Assets;
 import com.mygdx.game.logic.GameMap;
 import com.mygdx.game.logic.Snake;
 
-import java.awt.*;
-
 public class GameScreen extends AbstractScreen {
     private Snake snake;
     private Apple apple;
@@ -19,7 +17,6 @@ public class GameScreen extends AbstractScreen {
     private GameMap gameMap;
     private ShapeRenderer shapeRenderer;
 
-    private static final int SNAKE_SIZE = 32;
 
 
     public GameScreen(SpriteBatch batch) {
@@ -54,8 +51,7 @@ public class GameScreen extends AbstractScreen {
         gameMap.render(batch);
         snake.renderGUI(batch, font32);
         apple.render(batch);
-   //     snake.render(batch);
-        snake.drawHead(batch, shapeRenderer);
+        snake.render(batch);
         batch.end();
     }
 
